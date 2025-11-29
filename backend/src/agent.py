@@ -293,6 +293,9 @@ Gold: {player.get('gold')} coins"""
         status: Annotated[str, "Quest status: available, active, completed, or failed"]
     ):
         """Update quest status.
+
+
+
         
         Args:
             quest_id: Quest ID
@@ -317,9 +320,14 @@ Gold: {player.get('gold')} coins"""
         return f"Quest {quest_id} not found."
 
 
+
+
 def prewarm(proc: JobProcess):
     """Prewarm the VAD model"""
     proc.userdata["vad"] = silero.VAD.load()
+
+
+
 
 
 async def entrypoint(ctx: JobContext):
@@ -347,6 +355,8 @@ async def entrypoint(ctx: JobContext):
         turn_detection=MultilingualModel(),
         vad=ctx.proc.userdata["vad"],
     )
+
+
     
     # Metrics collection
     usage_collector = metrics.UsageCollector()
@@ -373,6 +383,8 @@ async def entrypoint(ctx: JobContext):
         ),
     )
 
+
+    
     # Join the room
     await ctx.connect()
 
